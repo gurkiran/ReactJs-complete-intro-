@@ -48,19 +48,30 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var MyTitle = __webpack_require__(159);
 
-	var MyFirstComponent = function MyFirstComponent() {
+	var App = function App() {
 	  return React.createElement(
 	    'div',
-	    null,
-	    React.createElement(MyTitle, { title: 'Whateves', color: 'rebeccawhite' }),
-	    React.createElement(MyTitle, { title: 'LOL', color: 'papayawhip' }),
-	    React.createElement(MyTitle, { title: 'OMGLOLROFLBBQ', color: '#f06d06' })
+	    { className: 'app-container' },
+	    React.createElement(
+	      'div',
+	      { className: 'home-info' },
+	      React.createElement(
+	        'h1',
+	        { className: 'title' },
+	        'svideo'
+	      ),
+	      React.createElement('input', { className: 'search', type: 'text', placeholder: 'Search' }),
+	      React.createElement(
+	        'button',
+	        { className: 'browse-all' },
+	        'or Browse All'
+	      )
+	    )
 	  );
 	};
 
-	ReactDOM.render(React.createElement(MyFirstComponent, null), document.getElementById('app'));
+	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -19783,32 +19794,6 @@
 	'use strict';
 
 	module.exports = __webpack_require__(3);
-
-/***/ },
-/* 159 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var MyTitle = React.createClass({
-	  displayName: 'MyTitle',
-	  render: function render() {
-	    var style = { color: this.props.color };
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        { style: style },
-	        this.props.title
-	      )
-	    );
-	  }
-	});
-
-	module.exports = MyTitle;
 
 /***/ }
 /******/ ]);
