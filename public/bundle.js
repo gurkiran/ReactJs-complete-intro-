@@ -47,7 +47,7 @@
 	var React = __webpack_require__(1)
 	var ReactDOM = __webpack_require__(158)
 	var MyTitle = __webpack_require__(159)
-
+	  
 	var div = React.DOM.div
 
 	var MyTitleFact = React.createFactory(MyTitle)

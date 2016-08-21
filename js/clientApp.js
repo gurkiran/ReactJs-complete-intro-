@@ -1,7 +1,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var MyTitle = require('./myTitle')
-
+  
 var div = React.DOM.div
 
 var MyTitleFact = React.createFactory(MyTitle)
