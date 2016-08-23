@@ -25763,19 +25763,41 @@
 	var data = __webpack_require__(224);
 	var ShowCard = __webpack_require__(225);
 
-	var Search = function Search() {
-	  return React.createElement(
-	    'div',
-	    { className: 'container' },
-	    React.createElement(
+	var Search = React.createClass({
+	  displayName: 'Search',
+	  getInitialState: function getInitialState() {
+	    return {
+	      searchTerm: 'This is my search term'
+	    };
+	  },
+	  handleSearchTermEvent: function handleSearchTermEvent(event) {
+	    this.setState({ searchTerm: event.target.value });
+	  },
+	  render: function render() {
+	    return React.createElement(
 	      'div',
-	      { className: 'shows' },
-	      data.shows.map(function (show) {
-	        return React.createElement(ShowCard, _extends({}, show, { key: show.imdbID }));
-	      })
-	    )
-	  );
-	};
+	      { className: 'container' },
+	      React.createElement(
+	        'header',
+	        { className: 'header' },
+	        React.createElement(
+	          'h1',
+	          { className: 'brand' },
+	          this.state.searchTerm
+	        ),
+	        React.createElement('input', { value: this.state.searchTerm, className: 'search-input', type: 'text', placeholder: 'Search',
+	          onChange: this.handleSearchTermEvent })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'shows' },
+	        data.shows.map(function (show) {
+	          return React.createElement(ShowCard, _extends({}, show, { key: show.imdbID }));
+	        })
+	      )
+	    );
+	  }
+	});
 
 	module.exports = Search;
 
