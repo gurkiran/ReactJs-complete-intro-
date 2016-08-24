@@ -3,13 +3,19 @@ var React = require('react')
 class Details extends React.Component {
   render () {
     return (
-      <div className='container'>
+      <div style={{textAlign: 'left'}} className='container'>
         <pre><code>
-          {JSON.stringify(this.props, null, 4)}
+          {JSON.stringify(this.props.params, null, 4)}
         </code></pre>
       </div>
     )
   }
+}
+
+const { object } = React.PropTypes
+
+Details.propTypes = {
+  params: object
 }
 
 module.exports = Details
