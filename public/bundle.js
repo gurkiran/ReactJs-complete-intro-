@@ -65,19 +65,34 @@
 	var hashHistory = _require2.hashHistory;
 
 
-	var App = function App() {
-	  return React.createElement(
-	    Router,
-	    { history: hashHistory },
-	    React.createElement(
-	      Route,
-	      { path: '/', component: Layout },
-	      React.createElement(IndexRoute, { component: Landing }),
-	      React.createElement(Route, { path: '/search', component: Search, shows: shows }),
-	      React.createElement(Route, { path: '/details/:id', component: Details })
-	    )
-	  );
-	};
+	var App = React.createClass({
+	  displayName: 'App',
+	  assignShow: function assignShow(nextState, replace) {
+	    var showsArray = shows.filter(function (show) {
+	      return show.imdbID === nextState.params.id;
+	    });
+
+	    if (showsArray.length < 1) {
+	      return replace('/');
+	    }
+
+	    Object.assign(nextState.params, showsArray[0]);
+	    return nextState;
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      Router,
+	      { history: hashHistory },
+	      React.createElement(
+	        Route,
+	        { path: '/', component: Layout },
+	        React.createElement(IndexRoute, { component: Landing }),
+	        React.createElement(Route, { path: '/search', component: Search, shows: shows }),
+	        React.createElement(Route, { path: '/details/:id', component: Details, onEnter: this.assignShow })
+	      )
+	    );
+	  }
+	});
 
 	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
@@ -25917,17 +25932,52 @@
 	  _createClass(Details, [{
 	    key: 'render',
 	    value: function render() {
+	      var params = this.props.params || {};
+	      var title = params.title;
+	      var year = params.year;
+	      var description = params.description;
+	      var poster = params.poster;
+	      var trailer = params.trailer;
+
 	      return React.createElement(
 	        'div',
 	        { className: 'container' },
 	        React.createElement(
-	          'pre',
-	          null,
+	          'header',
+	          { className: 'header' },
 	          React.createElement(
-	            'code',
-	            null,
-	            JSON.stringify(this.props, null, 4)
+	            'h1',
+	            { className: 'branding' },
+	            'svideo'
 	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'video-info' },
+	          React.createElement(
+	            'h1',
+	            { className: 'video-title' },
+	            title
+	          ),
+	          React.createElement(
+	            'h2',
+	            { className: 'video-year' },
+	            '(',
+	            year,
+	            ')'
+	          ),
+	          React.createElement('img', { className: 'video-poster', src: 'public/img/posters/' + poster }),
+	          React.createElement(
+	            'p',
+	            { className: 'video-description' },
+	            description
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'video-container' },
+	          React.createElement('iframe', { src: 'https://www.youtube-nocookie.com/embed/' + trailer + '?rel=0&amp;controls=0&amp;showinfo=0',
+	            frameBorder: '0', allowFUllScreen: true })
 	        )
 	      );
 	    }
@@ -25935,6 +25985,13 @@
 
 	  return Details;
 	}(React.Component);
+
+	var object = React.PropTypes.object;
+
+
+	Details.propTypes = {
+	  params: object
+	};
 
 	module.exports = Details;
 
