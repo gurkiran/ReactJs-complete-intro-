@@ -21,7 +21,7 @@ const Search = React.createClass({
         <Header
           handleSearchTermChange={this.handleSearchTermChange}
           searchTerm={this.state.searchTerm}
-          showSeach
+          showSearch
         />
         <div className='shows'>
           {this.props.route.shows

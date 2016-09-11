@@ -25809,7 +25809,7 @@
 	      React.createElement(Header, {
 	        handleSearchTermChange: this.handleSearchTermChange,
 	        searchTerm: this.state.searchTerm,
-	        showSeach: true
+	        showSearch: true
 	      }),
 	      React.createElement(
 	        'div',
@@ -25896,7 +25896,7 @@
 
 	  propTypes: {
 	    handleSearchTermChange: func,
-	    showSeach: bool,
+	    showSearch: bool,
 	    searchTerm: string
 	  },
 	  handleSearchTermEvent: function handleSearchTermEvent(e) {
@@ -25904,7 +25904,7 @@
 	  },
 	  render: function render() {
 	    var utilSpace = void 0;
-	    if (this.props.showSeach) {
+	    if (this.props.showSearch) {
 	      utilSpace = React.createElement('input', { type: 'text', className: 'search-input', placeholder: 'seach',
 	        value: this.props.searchTerm, onChange: this.handleSearchTermEvent });
 	    } else {
@@ -26068,7 +26068,7 @@
 
 	  propTypes: {
 	    handleSearchTermChange: func,
-	    showSeach: bool,
+	    showSearch: bool,
 	    searchTerm: string
 	  },
 	  handleSearchTermEvent: function handleSearchTermEvent(e) {
@@ -26076,7 +26076,7 @@
 	  },
 	  render: function render() {
 	    var utilSpace = void 0;
-	    if (this.props.showSeach) {
+	    if (this.props.showSearch) {
 	      utilSpace = React.createElement('input', { type: 'text', className: 'search-input', placeholder: 'seach',
 	        value: this.props.searchTerm, onChange: this.handleSearchTermEvent });
 	    } else {
