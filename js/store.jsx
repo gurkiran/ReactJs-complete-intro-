@@ -6,11 +6,11 @@ const initialState = {
   searchTerm: ''
 }
 
-const rootReducer = (state=initialState, action) => {
-  switch(action.type) {
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
     case SET_SEARCH_TERM:
       return reduceSearchTerm(state, action) // returns a new state
-    case default:
+    default:
       return state // else return the previous state # has to return a state
   }
 }
@@ -21,16 +21,19 @@ const reduceSearchTerm = (state, action) => {   // creating a child reducer to b
   return newState
 }
 
-const store = redux.createStore(rootReducer) // creating a store
+const store = redux.createStore(rootReducer, initialState, redux.compose(
+  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
+  ? window.devToolsExtension() : (f) => f
+))
 
-const mapStateToProps = (state) {
-  return { searchTerm: state.searchTerm} // this.props.searchTerm ( usage in React Component )
+const mapStateToProps = (state) => {
+  return { searchTerm: state.searchTerm } // this.props.searchTerm ( usage in React Component )
 }
 
 const mapDispatcherToProps = (dispatch) => {
   return {
     setSearchTerm (searchTerm) {
-      dispatch({ type:SET_SEARCH_TERM, value: searchTerm}) // this.props.setSearchTerm('newSearchString')
+      dispatch({ type: SET_SEARCH_TERM, value: searchTerm }) // this.props.setSearchTerm('newSearchString')
     }
   }
 }
